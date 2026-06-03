@@ -1,0 +1,36 @@
+application:
+  subdomain: songloft
+  multi_instance: true
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://songloft-app:58091/
+  injects:
+    - id: login-autofill
+      when:
+        - /#/login
+      do:
+        - src: builtin://simple-inject-password
+          params:
+            user: "{{ .U.admin_username }}"
+            password: "{{ .U.admin_password }}"
+
+services:
+  songloft-app:
+    # songloft/songloft:2.4.0
+    image: registry.lazycat.cloud/czyt/songloft/songloft:ed80d727ae1073ca
+    environment:
+      - ADMIN_USERNAME={{.U.admin_username}}
+      - ADMIN_PASSWORD={{.U.admin_password}}
+    binds:
+      - /lzcapp/run/mnt/home/{{.U.music_dir_name}}:/app/music
+      - /lzcapp/var/data:/app/data
+    cpu_shares: 512
+    mem_limit: 512M
+
+ext_config:
+  enable_media_access: true
+  enable_document_access: true
+  permissions:
+    - PERM_MEDIA_MOUNT_SHARED
