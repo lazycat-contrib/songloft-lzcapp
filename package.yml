@@ -1,12 +1,11 @@
 package: community.lazycat.app.songloft
-version: 2.9.6
+version: 2.10.0
 name: Songloft
 description: "个人音乐服务器"
 min_os_version: 1.5.0
 license: Apache-2.0 license
 homepage: https://github.com/songloft-org/songloft
 author: songloft-org
-
 locales:
   en:
     name: "Songloft"
@@ -14,7 +13,6 @@ locales:
   zh:
     name: "Songloft"
     description: "自托管个人音乐服务器"
-
 permissions:
   required:
     - net.internet

@@ -15,11 +15,11 @@ application:
           params:
             user: "{{ .U.admin_username }}"
             password: "{{ .U.admin_password }}"
-
 services:
   songloft-app:
     # songloft/songloft:2.9.6
-    image: docker.1ms.run/songloft/songloft:2.9.6
+    # upstream: songloft/songloft:2.10.0
+    image: songloft/songloft:2.10.0
     environment:
       - ADMIN_USERNAME={{.U.admin_username}}
       - ADMIN_PASSWORD={{.U.admin_password}}
@@ -28,7 +28,6 @@ services:
       - /lzcapp/var/data:/app/data
     cpu_shares: 512
     mem_limit: 512M
-
 ext_config:
   enable_media_access: true
   enable_document_access: true
