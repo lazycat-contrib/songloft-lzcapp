@@ -18,8 +18,8 @@ application:
 services:
   songloft-app:
     # songloft/songloft:2.9.6
-    # upstream: songloft/songloft:2.11.0
-    image: songloft/songloft:2.11.0
+    # upstream: songloft/songloft:2.11.1
+    image: songloft/songloft:2.11.1
     environment:
       - ADMIN_USERNAME={{.U.admin_username}}
       - ADMIN_PASSWORD={{.U.admin_password}}
